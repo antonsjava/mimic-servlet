@@ -2,7 +2,7 @@
 
 Helper servlet for making simple mock rest services.
 
-You can define paths and content to be returned by those paths. You can define also some somele code to return response, but it is mainly used for static content. Just dummy mock for soap of json rest.  
+You can define paths and content to be returned by those paths. You can define also some simple code to return response, but it is mainly used for static content. Just dummy mock for soap of json rest.  
 
 Example of configuration with [spring boot](https://github.com/antonsjava/sb-sampler/blob/main/src/main/java/sk/antons/sbsampler/rest/RestConf.java#L94)
 And with tomcat bellow. I hope this is self descriptive. 
@@ -70,7 +70,7 @@ public class TomcatServer {
                     .and().method().equals("POST")
                     .done()
                 .process(MimicServlet.processor()
-                    .contentType("application/soap-xml")
+                    .contentType("application/soap+xml")
                     .textContentFromUrl("classpath:samples/ok.xml")
                     .build())
             .inCase()
@@ -79,7 +79,7 @@ public class TomcatServer {
                     .and().method().equals("POST")
                     .done()
                 .process(MimicServlet.processor()
-                    .contentType("application/soap-xml")
+                    .contentType("application/soap+xml")
                     .content(new File("some/xml/in/file/fail.xml"))
                     .build())
             .build();
